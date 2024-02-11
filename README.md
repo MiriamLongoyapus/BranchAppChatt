@@ -1,4 +1,4 @@
-STEO ONE
+STEP ONE
 
 1. Install Python: Django is a Python web framework, so you need to have Python installed on your system.
    You can download the latest version of Python from the official Python website at python.org .
