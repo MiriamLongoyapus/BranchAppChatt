@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+   
+
+    .chat-container {
+      max-height: 400px;
+      overflow-y: scroll;
+    }
+
+    .message-container {
+      margin-bottom: 20px;
+    }
+
+    .input-form {
+      margin-top: 20px;
+    }
+
+    .input-form input[type="text"] {
+      width: 70%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 10px;
+    }
+
+    .input-form button {
+      padding: 10px;
+      border: 1px solid #4CAF50;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .input-form button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+<div align="center">
+  <h2>Customer-Agent Chat</h2>
+</div>
+
+<div class="container">
+  <h3>Agent Communication</h3>
+  <div class="chat-container" id="chatContainer">
+  
+  </div>
+</div>
+
+<div class="input-form">
+  <input type="text" id="messageContent" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send Message</button>
+</div>
+
+<script>
+  function sendMessage() {
+    var messageContent = document.getElementById('messageContent').value;
+
+    
+    if (!messageContent) {
+      alert('Please enter a message.');
+      return;
+    }
+
+    
+    displayMessage('Customer', messageContent);
+
+   
+    sendToBackend('Customer', messageContent);
+
+    
+    document.getElementById('messageContent').value = '';
+  }
+
+  function sendToBackend(sender, content) {
+   
+    setTimeout(function() {
+     
+      var agentReply = prompt('Agent, enter your reply:');
+      displayMessage('Agent', agentReply);
+    }, 1000);
+  }
+
+  function displayMessage(sender, content) {
+    var chatContainer = document.getElementById('chatContainer');
+    var messageDiv = document.createElement('div');
+    messageDiv.className = 'container';
+    messageDiv.innerHTML = '<p><strong>' + sender + '</strong>: ' + content + '</p>';
+    chatContainer.appendChild(messageDiv);
+
+ 
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
